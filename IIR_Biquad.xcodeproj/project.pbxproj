@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BADC4F5017B4162600F31B46 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = BADC4F4F17B4162600F31B46 /* main.c */; };
 		BADC4F5217B4162600F31B46 /* IIR_Biquad.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = BADC4F5117B4162600F31B46 /* IIR_Biquad.1 */; };
+		BADC4F5A17B4194700F31B46 /* IIRFilter.c in Sources */ = {isa = PBXBuildFile; fileRef = BADC4F5917B4194700F31B46 /* IIRFilter.c */; };
+		BADC4F5C17B420A800F31B46 /* libportaudio.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BADC4F5B17B420A800F31B46 /* libportaudio.2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +30,9 @@
 		BADC4F4C17B4162600F31B46 /* IIR_Biquad */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IIR_Biquad; sourceTree = BUILT_PRODUCTS_DIR; };
 		BADC4F4F17B4162600F31B46 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		BADC4F5117B4162600F31B46 /* IIR_Biquad.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = IIR_Biquad.1; sourceTree = "<group>"; };
+		BADC4F5817B4193E00F31B46 /* IIRFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IIRFilter.h; sourceTree = "<group>"; };
+		BADC4F5917B4194700F31B46 /* IIRFilter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = IIRFilter.c; sourceTree = "<group>"; };
+		BADC4F5B17B420A800F31B46 /* libportaudio.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libportaudio.2.dylib; path = /opt/local/lib/libportaudio.2.dylib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BADC4F5C17B420A800F31B46 /* libportaudio.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +52,7 @@
 			children = (
 				BADC4F4E17B4162600F31B46 /* IIR_Biquad */,
 				BADC4F4D17B4162600F31B46 /* Products */,
+				BADC4F5D17B420AF00F31B46 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,8 +69,18 @@
 			children = (
 				BADC4F4F17B4162600F31B46 /* main.c */,
 				BADC4F5117B4162600F31B46 /* IIR_Biquad.1 */,
+				BADC4F5817B4193E00F31B46 /* IIRFilter.h */,
+				BADC4F5917B4194700F31B46 /* IIRFilter.c */,
 			);
 			path = IIR_Biquad;
+			sourceTree = "<group>";
+		};
+		BADC4F5D17B420AF00F31B46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BADC4F5B17B420A800F31B46 /* libportaudio.2.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BADC4F5017B4162600F31B46 /* main.c in Sources */,
+				BADC4F5A17B4194700F31B46 /* IIRFilter.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +202,15 @@
 		BADC4F5617B4162600F31B46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
+				"OTHER_CFLAGS[arch=*]" = (
+					"-L/opt/local/lib",
+					"-I/opt/local/include",
+					"-lportaudio",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -191,6 +218,15 @@
 		BADC4F5717B4162600F31B46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
+				OTHER_CFLAGS = (
+					"-L/opt/local/lib",
+					"-I/opt/local/incude",
+					"-lportaudio",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
