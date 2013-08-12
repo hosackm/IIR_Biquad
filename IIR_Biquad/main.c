@@ -23,8 +23,9 @@
 #define SAMPLE_RATE (44100)
 #define NUM_SECONDS (20)
 #define NUM_COEFFS 5
+#define FILTERS 20
 
-BIQUADREF bq;
+BIQUADREF bq[FILTERS];
 static PaStream *stream;
 static PaError err;
 
@@ -37,7 +38,10 @@ static int callback(const void* input,
 {
 	float* in = (float*)input;
 	float* out = (float*)output;
-    bq_tick(bq, in, out, framesPerBuffer);
+    int i;
+    for(i=0;i<FILTERS;i++){
+        bq_tick(bq[i], in, out, framesPerBuffer);
+    }
 	return 0;
 }
 
@@ -109,7 +113,10 @@ int main(int argc, const char * argv[])
                                 0.00460399444634034,
                                 -1.7990948352036205,
                                 0.8175108129889816};
-    bq = bq_new(coeffs);
+    int i;
+    for (i=0; i<FILTERS;i++) {
+        bq[i] = bq_new(coeffs);
+    }
     pa_init();
     getchar();
     pa_close();

@@ -25,11 +25,13 @@ b2 = -0.00704967
 a1 = -1.96578
 a2 =  0.985901
 */
+
+typedef float SAMPLE;
 struct BIQUAD{
-    float outsample1; //y[n-1]
-    float outsample2; //y[n-2]
-    float insample1;  //x[n-1]
-    float insample2;  //x[n-2]
+    SAMPLE outsample1; //y[n-1]
+    SAMPLE outsample2; //y[n-2]
+    SAMPLE insample1;  //x[n-1]
+    SAMPLE insample2;  //x[n-2]
     float b0;
     float b1;
     float b2;
@@ -38,7 +40,6 @@ struct BIQUAD{
 };
 
 typedef struct BIQUAD * BIQUADREF;
-typedef float SAMPLE;
 
 BIQUADREF bq_new(float ab_coeffs[NUM_COEFFS]);
 void bq_tick(BIQUADREF bq, SAMPLE *input, SAMPLE *output, unsigned long length);
