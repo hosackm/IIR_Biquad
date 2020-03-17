@@ -1,9 +1,3 @@
-#Biquad Infinite Impulse Response Filter Implementation
-
-##Description
-The following code is a simple implementation of an IIR filter.  
-
-###Process
-1.)Audio input is received from the microphone using Portaudio
-2.)The filter is applied to the signal
-3.)The output of the filter (filtered signal) is sent to the default audio output device
+Biquad Sample Code
+==================
+An example program that takes input from the soundcard, passes it through a biquad IIR filter, and passes it to the soundcard output.
